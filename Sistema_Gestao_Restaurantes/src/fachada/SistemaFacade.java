@@ -46,7 +46,20 @@ public class SistemaFacade {
         clientes.removeIf(c -> c.getDocumento().equals(cpf));
         salvarDados();
     }
-    
+    public void atualizarCliente(String cpf, String novoEndereco, String novoTelefone) throws FuncionarioException {
+    Cliente clienteParaAtualizar = buscarClientePorCpf(cpf);
+
+    if (clienteParaAtualizar == null) {
+        throw new FuncionarioException("Cliente com CPF " + cpf + " não encontrado para atualização.");
+    }
+
+    clienteParaAtualizar.setEndereco(novoEndereco);
+    clienteParaAtualizar.setTelefone(novoTelefone);
+
+    salvarDados();
+
+    System.out.println(">>> Dados do cliente " + clienteParaAtualizar.getNome() + " atualizados com sucesso! <<<");
+}
     public void cadastrarFuncionario(String nome, String cpf, int idade, String nomeRestaurante) {
         if (funcionarios.stream().anyMatch(f -> f.getDocumento().equals(cpf))) {
             throw new FuncionarioException("CPF já cadastrado no sistema");
@@ -84,6 +97,19 @@ public class SistemaFacade {
         salvarDados();
     }
     
+    public String gerarRelatorioGeral() {
+    int totalClientes = this.clientes.size();
+    int totalFuncionarios = this.funcionarios.size();
+
+    StringBuilder relatorio = new StringBuilder();
+    relatorio.append("\n--- RELATÓRIO DO SISTEMA ---\n");
+    relatorio.append("Total de Clientes Cadastrados: ").append(totalClientes).append("\n");
+    relatorio.append("Total de Funcionários Cadastrados: ").append(totalFuncionarios).append("\n");
+    relatorio.append("----------------------------\n");
+
+    return relatorio.toString();
+}
+
     private void salvarDados() {
         try {
             repositorio.salvar(clientes, "clientes.dat");

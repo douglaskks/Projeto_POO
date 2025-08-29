@@ -5,11 +5,9 @@ public abstract class Item implements Serializable {
     private static final long serialVersionUID = 1L;
     private String nome;
     private double preco;
-    // ATRIBUTOS ADICIONADOS:
     private String descricao; 
     private double valorNutricional;
 
-    // CONSTRUTOR CORRIGIDO:
     public Item(String nome, double preco, String descricao, double valorNutricional) { 
         this.nome = nome; 
         this.preco = preco; 

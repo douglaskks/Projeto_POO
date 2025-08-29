@@ -25,13 +25,6 @@ public class SistemaFacade {
         carregarDados();
     }
 
-    // NOVOS MÉTODOS DE PEDIDO
-    /**
-     * Cria um novo pedido para um cliente com uma lista de itens.
-     * @param cpfCliente O CPF do cliente que está fazendo o pedido.
-     * @param itens A lista de itens (Comida/Bebida) do pedido.
-     * @throws FuncionarioException 
-     */
     public void criarPedido(String cpfCliente, List<Item> itens) {
         Cliente cliente = buscarClientePorCpf(cpfCliente);
         if (cliente == null) {
@@ -51,8 +44,6 @@ public class SistemaFacade {
 
         salvarDados(); 
     }
-
-     // @return Uma lista de Pedidos.
      
     public List<Pedido> listarPedidos() {
         return new ArrayList<>(this.pedidos);

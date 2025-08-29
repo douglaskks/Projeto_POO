@@ -17,7 +17,7 @@ public class RepositorioFuncionarioArrayList {
 
 	public Funcionario buscarPorCpf(String cpf) {
 		for (Funcionario f : funcionarios) {
-			if (f.getCpf().equals(cpf)) {
+			if (f.getDocumento().equals(cpf)) {
 				return f;
 			}
 		}

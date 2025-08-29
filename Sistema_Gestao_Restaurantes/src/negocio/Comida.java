@@ -1,7 +1,5 @@
 package negocio;
 
-import dados.CategoriaComida; // Supondo que a enum esteja em 'dados'
-
 public class Comida extends Item {
     private CategoriaComida categoria;
 

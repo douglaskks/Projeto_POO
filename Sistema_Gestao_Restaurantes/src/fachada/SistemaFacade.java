@@ -52,8 +52,8 @@ public class SistemaFacade {
         salvarDados(); 
     }
 
-      @return 
-   
+     // @return Uma lista de Pedidos.
+     
     public List<Pedido> listarPedidos() {
         return new ArrayList<>(this.pedidos);
     }

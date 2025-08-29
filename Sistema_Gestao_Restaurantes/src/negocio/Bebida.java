@@ -1,7 +1,5 @@
 package negocio;
 
-import dados.CategoriaBebida; 
-
 public class Bebida extends Item {
     private CategoriaBebida categoria;
 

@@ -17,7 +17,7 @@ public class RepositorioClienteArrayList {
 
 	public Cliente buscarPorCpf(String cpf) {
 		for (Cliente c : clientes) {
-			if (c.getCpf().equals(cpf)) {
+			if (c.getDocumento().equals(cpf)) {
 				return c;
 			}
 		}

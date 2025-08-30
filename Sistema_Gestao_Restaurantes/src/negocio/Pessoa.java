@@ -1,8 +1,6 @@
 package negocio;
 
-import java.io.Serializable;
-
-public abstract class Pessoa implements Serializable {
+public abstract class Pessoa {
     private String nome;
     private String documento;
     

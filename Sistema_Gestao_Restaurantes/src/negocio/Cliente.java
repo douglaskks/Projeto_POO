@@ -6,11 +6,13 @@ import java.util.List;
 public class Cliente extends Pessoa {
     private String endereco;
     private String telefone;
-    private List<String> historicoPedidos;
+    private List<Pedido> pedidos;
+    private List<Cupom> cuponsDisponiveis;
     
     public Cliente(String nome, String cpf) {
         super(nome, cpf);
-        this.historicoPedidos = new ArrayList<>();
+        this.pedidos = new ArrayList<>();
+        this.cuponsDisponiveis = new ArrayList<>();
     }
     
     public String getEndereco() {
@@ -29,19 +31,37 @@ public class Cliente extends Pessoa {
         this.telefone = telefone;
     }
     
-    public List<String> getHistoricoPedidos() {
-        return historicoPedidos;
+    public List<Pedido> getPedidos() {
+        return pedidos;
     }
     
-    public void adicionarPedido(String pedido) {
-        this.historicoPedidos.add(pedido);
+    public List<Cupom> getCuponsDisponiveis() {
+        return cuponsDisponiveis;
+    }
+    
+    public void adicionarPedido(Pedido pedido) {
+        this.pedidos.add(pedido);
+    }
+    
+    public void removerPedido(int id) {
+        pedidos.removeIf(pedido -> pedido.getId() == id);
+    }
+    
+    public void adicionarCupom(Cupom cupom) {
+        this.cuponsDisponiveis.add(cupom);
+    }
+    
+    public boolean usarCupom(Cupom cupom) {
+        if (cuponsDisponiveis.contains(cupom) && cupom.isValido()) {
+            cupom.usar();
+            cuponsDisponiveis.remove(cupom);
+            return true;
+        }
+        return false;
     }
     
     @Override
     public String toString() {
-        return super.toString() + 
-               ", Endereço: " + endereco + 
-               ", Telefone: " + telefone +
-               ", Pedidos: " + historicoPedidos.size();
+        return super.toString() + ", Telefone: " + telefone + ", Endereço: " + endereco;
     }
 }
